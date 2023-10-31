@@ -12,16 +12,12 @@ class _ButtonTestState extends State<ButtonTest> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Button Test"),
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.green,
       ),
-      body: Center(
-        child: IconButton(
-          icon: Icon(Icons.add),
-          iconSize: 200,
-          onPressed:(){
-    setState(() {});}
-    ),
+      body: CircleAvatar(
+        child: Icon(Icons.person),
       )
+
     );
   }
 
