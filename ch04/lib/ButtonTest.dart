@@ -18,14 +18,18 @@ class _ButtonTestState extends State<ButtonTest> {
         child: IconButton(
           icon: Icon(Icons.add),
           iconSize: 200,
-          onPressed: (){
-            setState(() {
-
-            });
-          },
-        ),
+          onPressed:(){
+    setState(() {});}
+    ),
       )
     );
+  }
+
+  void mypressed(){
+      setState(() {
+
+      });
+
   }
 
 }
