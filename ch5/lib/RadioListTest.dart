@@ -48,9 +48,11 @@ class _RadioListTestState extends State<RadioListTest> {
               value: Gender.MAN,
               groupValue: gender,
               onChanged:(value){
-                 setState(() {
+              setState(() {
               gender = value;
-                });
+      });
+    }
+    ),
           RadioListTile(
                title: Text('WoMan'),
                 value: Gender.WOMAN,
@@ -59,7 +61,7 @@ class _RadioListTestState extends State<RadioListTest> {
               setState(() {
               gender = value;
     });
-    });
+    })
 
     ],
       ),
