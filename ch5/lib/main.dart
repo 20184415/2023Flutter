@@ -1,3 +1,5 @@
+import 'package:ch5/HeroTest.dart';
+
 import 'AlertDlg.dart';
 import 'package:flutter/material.dart';
 import 'TextFieldTest.dart';
@@ -6,6 +8,7 @@ import 'RadioListTest.dart';
 import 'DropDown.dart';
 import 'DatePickerTest.dart';
 import 'EventTest.dart';
+import 'HeroTest.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -23,7 +26,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: EventTest(),
+      home: HeroTest(),
+      //EventTest(),
       //DatePickerTest(),
       // AlertDlg(),
       // DropDown(),
