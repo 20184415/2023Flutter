@@ -1,9 +1,11 @@
-
+import 'AlertDlg.dart';
 import 'package:flutter/material.dart';
 import 'TextFieldTest.dart';
 import 'CheckBoxTest.dart';
 import 'RadioListTest.dart';
 import 'DropDown.dart';
+import 'DatePickerTest.dart';
+import 'EventTest.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -21,7 +23,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: DropDown(),
+      home: EventTest(),
+      //DatePickerTest(),
+      // AlertDlg(),
+      // DropDown(),
         //RadioListTest(),
        //CheckBoxTest(),
       //TextFieldTest(),
