@@ -29,7 +29,6 @@ class _HeroTestState extends State<HeroTest> {
             ),
           )
     ),
-        }
       );
 
 }
