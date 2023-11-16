@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'Person.dart';
+import 'FirstPage.dart';
 class SecondPage extends StatefulWidget {
   const SecondPage({Key?key,required this.person}): super(key:key);
-  final Person person;
+  final  Person person ;
 
   @override
   State<SecondPage> createState() => _SecondPageState();
@@ -26,9 +27,13 @@ class _SecondPageState extends State<SecondPage> {
               ElevatedButton(
                 child: Text('이전 페이지로 이동'),
                 onPressed: (){
-                Navigator.pop(context,'ok');
+                  final person = Person('김길동',40);
+                Navigator.pop(context,person);
                 },
               ),
+          SizedBox(
+            height: 40,
+          ),
             ],
           ),
     );
