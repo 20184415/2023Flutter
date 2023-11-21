@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  carousel_slider: ^4.2.1
   flutter:
     sdk: flutter
 
@@ -52,6 +53,12 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - assets/201904291390027161_3.jpg
+    - assets/cat-7094808_960_720.jpg
+    - assets/다운로드12.jpg
+    # 다른 assets들을 계속 나열할 수 있어요
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

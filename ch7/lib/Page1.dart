@@ -1,11 +1,11 @@
-
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 class Page1 extends StatelessWidget {
   const Page1({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: [
         _buildTop(),
         _buildMiddle(),
@@ -105,6 +105,49 @@ class Page1 extends StatelessWidget {
     );
   }
             }
-  Widget _buildMiddle(){return Text('Middle');}
-  Widget _buildBottom() {return Text('Bottom');}
+  Widget _buildMiddle(){
+  final imageItems =[
+    'assets/201904291390027161_3.jpg',
+    'assets/cat-7094808_960_720.jpg',
+    'assets/다운로드12.jpg'
+  ];
+  return CarouselSlider(
+    options: CarouselOptions(
+      height: 500.0,
+    ),
+    items: imageItems.map((path)
+    {
+      return Builder(
+          builder: (BuildContext context){
+            return Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                child: ClipRect(
+                child: Image.asset(
+                  path,
+                  fit: BoxFit.cover,
+                )
+            )
+            );
+          }
+      );
+    }
+  ).toList(),
+  );
+}
+
+  Widget _buildBottom() {
+    final items = List.generate(
+        10, (i){
+        return ListTile(
+        leading: Icon(Icons.notifications_none),
+        title: Text('공지사항입니다.'),
+    );
+    });
+    return ListView(
+    physics: NeverScrollableScrollPhysics(),
+    shrinkWrap: true,
+    children:items
+    );
+    }
 
