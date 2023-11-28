@@ -1,3 +1,4 @@
+import 'package:ch9/BmiResult.dart';
 import 'package:flutter/material.dart';
 class Bmi extends StatefulWidget {
   const Bmi({super.key});
@@ -6,8 +7,16 @@ class Bmi extends StatefulWidget {
   State<Bmi> createState() => _BmiState();
 }
 
-class _BmiState extends State<Bmi> {
-  final _formKey = GlobalKey<FormState>();
+class _BmiState extends State<Bmi> {//274
+  final _formKey = G170lobalKey<FormState>();
+  final _heightController = TextEditingController();
+  final _wightController = TextEditingController();
+
+  void dispose(){
+    _heightController.dispose();
+    _wightController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +38,13 @@ class _BmiState extends State<Bmi> {
                   hintText: '키'
                 ),
                 keyboardType: TextInputType.number,
+                controller:  _heightController,//값
+                validator: (value){
+                  if(value!.trim().isEmpty){
+                    return 'key값 입력';
+                  }
+                  return null;//공백제거
+                },
               ),
               SizedBox(height: 20),
               TextFormField(
@@ -37,6 +53,13 @@ class _BmiState extends State<Bmi> {
                     hintText: '몸무게'
                 ),
                 keyboardType: TextInputType.number,
+                controller: _wightController, //값저장
+                validator: (value){
+                  if(value!.trim().isEmpty){
+                    return '몸무게 값을 입력하세요';
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 20),
               Container(
@@ -44,10 +67,18 @@ class _BmiState extends State<Bmi> {
                 alignment: Alignment.centerRight,
                 child: ElevatedButton(
                     onPressed: (){
-                      if(_formKey.currentState!.validate()){
-                      }
-                    },
-                    child: Text('결과')),
+                  if(_formKey.currentState!.validate()){
+                                Navigator.push(
+                                     context,
+                              MaterialPageRoute(builder: (context)=>Bmiresult(
+                                height: double.parse(_heightController.text.trim()),
+                            weight: double.parse(_wightController.text.trim()),
+                          ),
+                          ),
+                        );
+                    }
+                    }
+                    child: Text('결과'),
               )
             ],
           ),

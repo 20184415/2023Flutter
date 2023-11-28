@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BmiResult(height:1.0 , weight: 2.0),//Scaffold(
+      home: Bmi(),//Scaffold(
        // appBar: AppBar(
          // title: Text('폼 검증 Test'),
           //backgroundColor: Colors.purple,
