@@ -8,7 +8,7 @@ class Bmi extends StatefulWidget {
 }
 
 class _BmiState extends State<Bmi> {//274
-  final _formKey = G170lobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final _heightController = TextEditingController();
   final _wightController = TextEditingController();
 
@@ -67,20 +67,21 @@ class _BmiState extends State<Bmi> {//274
                 alignment: Alignment.centerRight,
                 child: ElevatedButton(
                     onPressed: (){
-                  if(_formKey.currentState!.validate()){
-                                Navigator.push(
-                                     context,
-                              MaterialPageRoute(builder: (context)=>Bmiresult(
-                                height: double.parse(_heightController.text.trim()),
+                  if(_formKey.currentState!.validate()) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>
+                          Bmiresult(
+                            height: double.parse(_heightController.text.trim()),
                             weight: double.parse(_wightController.text.trim()),
                           ),
-                          ),
-                        );
+                      ),
+                    );
+                  }
                     }
-                    }
-                    child: Text('결과'),
+                    child: Text('결과')
               )
-            ],
+            ]
           ),
         ),
       ),
