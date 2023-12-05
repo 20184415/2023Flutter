@@ -29,7 +29,7 @@ class _StopwatchpageState extends State<Stopwatchpage> {
       body: _buildBody(),
       bottomNavigationBar: BottomAppBar(
         child: Container(
-          height: 50,
+          height: 500,
         ),
       ),
       floatingActionButton: FloatingActionButton(
