@@ -1,13 +1,17 @@
+import 'dart:html';
+import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
+
 import 'package:flutter/material.dart';
 import 'ToDo.dart';
-class TODoListPage extends StatefulWidget {
-  const TODoListPage({super.key});
+class ToDoListPage extends StatefulWidget {
+  const ToDoListPage({super.key});
 
   @override
-  State<TODoListPage> createState() => _TODoListPageState();
+  State<ToDoListPage> createState() => _ToDoListPageState();
 }
 
-class _TODoListPageState extends State<TODoListPage> {
+class _ToDoListPageState extends State<ToDoListPage> {
   final _items = <ToDo>[];
   var _toDocontroller = TextEditingController();
 
@@ -41,35 +45,59 @@ class _TODoListPageState extends State<TODoListPage> {
                 )
               ],
             ),
-            Expanded(child: ListView(
-              children:  _items.map((todo)=> _buildItemWidget(todo)).toList(),
+            StreamBuilder<QureySnapshot>(
+              stream: FirebaseFirestore.instanc.collection('todo2').snapshot(),
+              builder: (context, snapshot){
+              if(!snapshot.hasData){
+                           return CircularProgressIndicator();
+                            }
+                        final documents = snapshot.data!.docs;
 
-            ),
-            ),
-          ],
+
+              return Expanded(
+                child: ListView(
+                  children: documents.map((doc)=> _buildItemWidget(doc)).toList(),
+              ),
+            );
+          }
         ),
-      )
+      ],
+    ),
+      ),
     );
   }
-  Widget _buildItemWidget(ToDo todo){
+  Widget _buildItemWidget(DacumentSnapshot doc){
+    final todo = ToDo(doc['title'],isDone: doc['isDone']);
     return ListTile(
-      onTap: (){},
+      onTap: ()=>_toggleToDo(doc),
       title: Text(
         todo.title,
         style: todo.isDone
-            ?TextStyle(
+            ? TextStyle(
           decoration: TextDecoration.lineThrough,
-          fontSize:FontStyle.italic,) : null,
+          fontStyle: FontStyle.italic,
+        )
+            : null,
       ),
-      trailing: IconButton(
-        icon: Icon(Icons.delete_forever),
-      ),
+    trailing: IconButton(
+    icon: Icon(Icons.delete_forever),
+      onPressed: ()=> _deleteToDo(doc),
+    ),
     );
   }
+
   void _addTodo(ToDo todo){
-    setState(() {
-      _items.add(todo);
-      _toDocontroller.text = '';
-    });
+    FirebaseFirestore.instance.collection('todo')
+        .add({'title':todo.title,'isDone': todo.isDone});
+      _toDocontroller.text='';
+  }
+  void _deleteToDo(DocumentSnapshot doc){
+    FirebaseFirestore.instance.collection('todo').doc(doc.id).delete();
+  }
+  void _toggleToDo(DocumentShapshot doc){
+    FirebaseFirestore.instance.collection('todo').doc(doc.id).
+    update({'isDone': !doc['isDOne']}
+    );
+    }
   }
 }
